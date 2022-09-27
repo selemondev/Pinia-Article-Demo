@@ -1,9 +1,12 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, watchEffect } from 'vue';
 import { useProductStore } from '../stores/productStore';
 const productStore = useProductStore();
 const cartProducts = ref([]);
-cartProducts.value = productStore.cart;
+
+watchEffect(() => {
+  cartProducts.value = productStore.cart;
+})
 </script>
 <template>
   <div class="overflow-y-auto h-96 py-2 px-4">
